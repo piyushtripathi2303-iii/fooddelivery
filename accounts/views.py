@@ -151,10 +151,13 @@ def order_success(request):
 
     cart_items = Cart.objects.all()
 
+    user = User.objects.get(id=request.session["user_id"])
+
     for item in cart_items:
-        Order.objects.create(
-            food=item.food
-        )
+      Order.objects.create(
+        user=user,
+        food=item.food
+    )
 
     cart_items.delete()
 
@@ -162,7 +165,8 @@ def order_success(request):
 
 
 def orders(request):
-    all_orders = Order.objects.all()
+    user = User.objects.get(id=request.session["user_id"])
+    all_orders = Order.objects.filter(user=user)
 
     return render(request, "accounts/orders.html", {
         "orders": all_orders
