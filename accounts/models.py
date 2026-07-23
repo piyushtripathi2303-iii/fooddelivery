@@ -24,6 +24,7 @@ class Food(models.Model):
 
 
 class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
@@ -37,12 +38,11 @@ class Order(models.Model):
     
 
 class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
-    def __str__(self):
-     return self.food.name
-    def __str__(self):
-        return self.food.name
 
+    def _str_(self):
+        return self.food.name
 class Review(models.Model):
      food = models.ForeignKey(Food, on_delete=models.CASCADE)
      user = models.ForeignKey(User, on_delete=models.CASCADE)
