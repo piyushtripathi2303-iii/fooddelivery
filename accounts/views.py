@@ -21,7 +21,7 @@ def home(request):
 
     # Check Login
     if "user_id" not in request.session:
-        return render(request, "accounts/login.html")
+        return render(request, "login.html")
 
     # Search
     search = request.GET.get("search")
