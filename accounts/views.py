@@ -43,7 +43,7 @@ def home(request):
 
     wishlist = Wishlist.objects.values_list("food_id", flat=True)
     popular_foods = Food.objects.filter(rating__gte=4.5)
-    return render(request, "home.html", {
+    return render(request, "accounts/home.html", {
         "foods": foods,
         "wishlist": wishlist,
         "popular_foods":popular_foods,
@@ -64,7 +64,7 @@ def register(request):
 
         return HttpResponse("Registration Successful")
 
-    return render(request, "register.html")
+    return render(request, "accounts/register.html")
 
 
 def logout(request):
@@ -103,7 +103,7 @@ def cart(request):
 
     grand_total = total + delivery - discount
 
-    return render(request, "cart.html", {
+    return render(request, "accounts/cart.html", {
         "cart_items": cart_items,
         "total": total,
         "delivery": delivery,
@@ -141,11 +141,11 @@ def place_order(request):
 
     if request.method == "GET":
         print("PAYMENT PAGE")
-        return render(request, "payment.html")
+        return render(request, "accounts/payment.html")
 
     elif request.method == "POST":
         print("PROCESSING PAGE")
-        return render(request, "processing.html")
+        return render(request, "accounts/processing.html")
     
 def order_success(request):
 
@@ -158,13 +158,13 @@ def order_success(request):
 
     cart_items.delete()
 
-    return render(request, "order_success.html")
+    return render(request, "accounts/order_success.html")
 
 
 def orders(request):
     all_orders = Order.objects.all()
 
-    return render(request, "orders.html", {
+    return render(request, "accounts/orders.html", {
         "orders": all_orders
     })
 
@@ -185,7 +185,7 @@ def add_to_wishlist(request, food_id):
 def wishlist(request):
     items = Wishlist.objects.all()
 
-    return render(request, "wishlist.html", {
+    return render(request, "accounts/wishlist.html", {
         "items": items
     })
 
@@ -211,13 +211,13 @@ def remove_from_wishlist(request, wishlist_id):
     return redirect("wishlist")
 
 def tracking(request):
-    return render(request, "tracking.html")
+    return render(request, "accounts/tracking.html")
 def about(request):
-    return render(request, "about.html")
+    return render(request, "accounts/about.html")
 
 
 def contact(request):
-    return render(request, "contact.html")
+    return render(request, "accounts/contact.html")
 def profile(request):
     user = User.objects.get(id=request.session["user_id"])
 
@@ -236,7 +236,7 @@ def profile(request):
     wishlist = Wishlist.objects.count()
     reviews = Review.objects.count()
 
-    return render(request, "profile.html", {
+    return render(request, "accounts/profile.html", {
         "user": user,
         "orders": orders,
         "wishlist": wishlist,
