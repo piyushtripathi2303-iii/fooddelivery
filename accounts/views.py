@@ -71,11 +71,23 @@ def logout(request):
     request.session.flush()
     return redirect("home")
 
-
 def add_to_cart(request, food_id):
+    user = User.objects.get(id=request.session["user_id"])
     food = Food.objects.get(id=food_id)
-    Cart.objects.create(food=food)
+
+    item = Cart.objects.filter(user=user, food=food).first()
+
+    if item:
+        item.quantity += 1
+        item.save()
+    else:
+        Cart.objects.create(
+            user=user,
+            food=food
+        )
+
     return redirect("cart")
+
 
 
 def cart(request):
@@ -88,7 +100,8 @@ def cart(request):
         else:
             request.session["discount"] = 0
 
-    cart_items = Cart.objects.all()
+    user = User.objects.get(id=request.session["user_id"])
+    cart_items = Cart.objects.filter(user=user)
 
     total = 0
     for item in cart_items:
@@ -113,18 +126,21 @@ def cart(request):
 
 
 def remove_from_cart(request, cart_id):
-    item = Cart.objects.get(id=cart_id)
+    user = User.objects.get(id=request.session["user_id"])
+    item = Cart.objects.get(id=cart_id, user=user)
     item.delete()
     return redirect("cart")
 def increase_quantity(request, cart_id):
-    item = Cart.objects.get(id=cart_id)
+    user = User.objects.get(id=request.session["user_id"])
+    item = Cart.objects.get(id=cart_id, user=user)
     item.quantity += 1
     item.save()
     return redirect("cart")
 
 
 def decrease_quantity(request, cart_id):
-    item = Cart.objects.get(id=cart_id)
+    user = User.objects.get(id=request.session["user_id"])
+    item = Cart.objects.get(id=cart_id, user=user)
 
     if item.quantity > 1:
         item.quantity -= 1
@@ -174,20 +190,25 @@ def orders(request):
 
 
 def add_to_wishlist(request, food_id):
+    user = User.objects.get(id=request.session["user_id"])
     food = Food.objects.get(id=food_id)
 
-    item = Wishlist.objects.filter(food=food).first()
+    item = Wishlist.objects.filter(user=user, food=food).first()
 
     if item:
         item.delete()
     else:
-        Wishlist.objects.create(food=food)
+        Wishlist.objects.create(
+            user=user,
+            food=food
+        )
 
     return redirect("home")
 
 
 def wishlist(request):
-    items = Wishlist.objects.all()
+    user = User.objects.get(id=request.session["user_id"])
+    items = Wishlist.objects.filter(user=user)
 
     return render(request, "accounts/wishlist.html", {
         "items": items
@@ -210,7 +231,8 @@ def add_review(request, food_id):
 
     return redirect("home")
 def remove_from_wishlist(request, wishlist_id):
-    item = Wishlist.objects.get(id=wishlist_id)
+    user = User.objects.get(id=request.session["user_id"])
+    item = Wishlist.objects.get(id=wishlist_id, user=user)
     item.delete()
     return redirect("wishlist")
 
