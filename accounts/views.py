@@ -56,13 +56,16 @@ def register(request):
         email = request.POST["email"]
         password = request.POST["password"]
 
-        User.objects.create(
-            name=name,
-            email=email,
-            password=password
-        )
+        user = User.objects.create(
+          name=name,
+         email=email,
+         password=password
+)
 
-        return HttpResponse("Registration Successful")
+        request.session["user_id"] = user.id
+        request.session["user_name"] = user.name
+
+        return redirect("home")
 
     return render(request, "accounts/register.html")
 
