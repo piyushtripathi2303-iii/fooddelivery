@@ -161,10 +161,26 @@ def place_order(request):
     print("METHOD =", request.method)
 
     if request.method == "GET":
+        user = User.objects.get(id=request.session["user_id"])
+        cart_items = Cart.objects.filter(user=user)
+
+        total = 0
+        for item in cart_items:
+         total += item.food.price * item.quantity
+
+         delivery = 40
+
+        if total >= 299:
+         delivery = 0
+
+        discount = request.session.get("discount", 0)
+
+        grand_total = total + delivery - discount
         print("PAYMENT PAGE")
         return render(request, "accounts/payment.html",{
-            "grand_total":
-            request.session.get("grand_total",0)
+            "grand_total":grand_total,
+            "delivery":delivery,
+            
         })
 
     elif request.method == "POST":
