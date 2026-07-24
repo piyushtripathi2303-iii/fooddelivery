@@ -380,6 +380,13 @@ background:#f4b400;
 .rating-red{
 background:#e53935;
 }
+.heart{
+transition:.3s;
+}
+
+.heart:hover{
+transform:scale(1.2);
+}
 </style>
 
 </head>
@@ -639,33 +646,68 @@ border:none;
 height:1px;
 background:#eee;
 ">
+<hr style="margin:20px 0;border:none;height:1px;background:#eee;">
 
-<h3>⭐ Write Review</h3>
+<div style="
+background:#fafafa;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+">
+
+<h3 style="
+color:#ff5722;
+margin-bottom:10px;
+text-align:center;
+">
+⭐ Write Review
+</h3>
 
 <form action="/review/{{ food.id }}/" method="POST">
-    {% csrf_token %}
 
-    <select name="rating" required>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-    </select>
+{% csrf_token %}
 
-    <br><br>
+<select name="rating" required
+style="
+width:100%;
+padding:12px;
+border-radius:10px;
+margin-bottom:12px;
+border:1px solid #ddd;
+">
 
-    <textarea
-        name="review"
-        rows="3"
-        cols="30"
-        placeholder="Write your review..."
-        required></textarea>
+<option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+<option value="4">⭐⭐⭐⭐ Very Good</option>
+<option value="3">⭐⭐⭐ Good</option>
+<option value="2">⭐⭐ Average</option>
+<option value="1">⭐ Poor</option>
 
-    <br><br>
+</select>
 
-    <button type="submit">Submit Review</button>
+<textarea
+name="review"
+rows="3"
+placeholder="Write your review..."
+required
+style="
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd;
+resize:none;
+"></textarea>
+
+<br><br>
+
+<button type="submit">
+⭐ Submit Review
+</button>
+
 </form>
+
+</div>
+
+
 </div>
 
 </div>
