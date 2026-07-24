@@ -97,44 +97,46 @@ margin-bottom:15px;">
 
 <h2>🍽️ {{ order.food.name }}</h2>
 
-<p class="price">₹{{ order.food.price }}</p>
-<p style="
-color:#28a745;
-font-weight:bold;
-font-size:18px;
-">
+<div style="margin-top:15px; line-height:2;">
 
-⭐ {{ order.food.rating }}
+<p><b>💰 Price :</b> <span style="color:green;">₹{{ order.food.price }}</span></p>
 
+<p><b>⭐ Rating :</b>
+<span style="color:#28a745;">{{ order.food.rating }}</span>
 </p>
 
-<p class="date">📅 {{ order.order_date }}</p>
+<p><b>📅 Order Date :</b> {{ order.order_date }}</p>
 
-<p>🚚 Delivery Time : 25-30 Minutes</p>
+<p><b>🚚 Delivery Time :</b> 25–30 Minutes</p>
 
-<span class="status">
-    
-
-</a>
+<p style="
+display:inline-block;
+background:#28a745;
+color:white;
+padding:8px 16px;
+border-radius:20px;
+font-weight:bold;">
 ✅ Delivered Successfully
-</span>
+</p>
 
-<p style="margin-top:10px;color:green;font-weight:bold;">
+<p style="color:#28a745;font-weight:bold;margin-top:10px;">
 🎉 Thanks for Ordering!
 </p>
-<br><br>
 
 <a href="/add-to-cart/{{ order.food.id }}"
 style="
+display:inline-block;
+margin-top:15px;
 background:#ff5722;
 color:white;
-padding:12px 22px;
+padding:12px 25px;
 border-radius:10px;
 text-decoration:none;
-font-weight:bold;
-">
-
+font-weight:bold;">
 🔄 Order Again
+</a>
+
+</div>
 </div>
 
 {% endfor %}
