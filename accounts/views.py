@@ -42,7 +42,7 @@ def home(request):
       foods = foods.order_by("-price")
 
     wishlist = Wishlist.objects.values_list("food_id", flat=True)
-    popular_foods = Food.objects.filter(rating__gte=4.5)
+    popular_foods = Food.objects.filter(rating__gte=4.5)[:3]
     return render(request, "accounts/home.html", {
         "foods": foods,
         "wishlist": wishlist,
@@ -270,4 +270,10 @@ def profile(request):
         "orders": orders,
         "wishlist": wishlist,
         "reviews": reviews,
+    })
+def popular_foods(request):
+    foods = Food.objects.filter(rating__gte=4.5)
+
+    return render(request, "popular_foods.html", {
+        "foods": foods
     })
