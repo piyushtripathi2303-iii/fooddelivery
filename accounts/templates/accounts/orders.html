@@ -13,6 +13,8 @@ body{
 h1{
     text-align:center;
     color:#ff5722;
+    font-size:40px;
+    margin-bottom:30px ;
 }
 
 .box{
@@ -22,10 +24,14 @@ h1{
 
 .order-card{
     background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 0 15px rgba(0,0,0,.15);
-    margin-bottom:20px;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    margin-bottom:25px;
+    transition:.3s ;
+}
+.order-card:hover{
+    transform:translateY(-8px) ;
 }
 
 .price{
@@ -49,14 +55,20 @@ h1{
 
 .home{
     display:block;
-    width:220px;
-    margin:30px auto;
+    width:240px;
+    margin:35px auto;
     text-align:center;
-    background:#ff5722;
+    background:#28a745;
     color:white;
-    padding:12px;
+    padding:15px;
     text-decoration:none;
-    border-radius:10px;
+    border-radius:12px;
+    font-weight: bold;
+    transition: .3s;
+
+}
+.home:hover{
+    background: #1f8a38;
 }
 </style>
 
@@ -73,16 +85,55 @@ h1{
 {% for order in orders %}
 
 <div class="order-card">
+    {% if order.food.image %}
+<img src="{{ order.food.image.url }}"
+style="
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+margin-bottom:15px;">
+{% endif %}
 
 <h2>🍽️ {{ order.food.name }}</h2>
 
 <p class="price">₹{{ order.food.price }}</p>
+<p style="
+color:#28a745;
+font-weight:bold;
+font-size:18px;
+">
+
+⭐ {{ order.food.rating }}
+
+</p>
 
 <p class="date">📅 {{ order.order_date }}</p>
 
 <p>🚚 Delivery Time : 25-30 Minutes</p>
 
-<span class="status">✅ Delivered</span>
+<span class="status">
+    <br><br>
+
+<a href="/add-to-cart/{{ order.food.id }}"
+style="
+background:#ff5722;
+color:white;
+padding:12px 22px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+">
+
+🔄 Order Again
+
+</a>
+✅ Delivered Successfully
+</span>
+
+<p style="margin-top:10px;color:green;font-weight:bold;">
+🎉 Thanks for Ordering!
+</p>
 
 </div>
 
