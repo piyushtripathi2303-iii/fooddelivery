@@ -432,11 +432,27 @@ Fresh • Hot • Fast Delivery in 25 Minutes
 🔥 Explore Menu
 </a>
 </div>
-<h2 id="popular" style="text-align:center; color:#ff5722; margin-top:30px;">
-🔥 Popular Foods
-</h2>
+<div style="text-align:center; margin:30px 0;">
 
-<div class="container">
+<button
+onclick="togglePopular()"
+style="
+padding:15px 30px;
+background:#ff5722;
+color:white;
+border:none;
+border-radius:30px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;">
+
+🔥 Popular Foods ▼
+
+</button>
+
+</div>
+
+<div id="popularFoods" class="container" style="display:none;"></div>
 
 {% for food in popular_foods %}
 
@@ -650,5 +666,19 @@ Contact Us
 <p>© 2026 Food Delivery App. All Rights Reserved.</p>
 
 </footer>
+<script>
+function togglePopular(){
+
+    var x = document.getElementById("popularFoods");
+
+    if(x.style.display=="none"){
+        x.style.display="flex";
+    }
+    else{
+        x.style.display="none";
+    }
+
+}
+</script>
 </body>
 </html>
