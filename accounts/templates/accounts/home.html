@@ -338,6 +338,20 @@ button{
     background:#ff5722;
     color:white;
 }
+.search-btn{
+    background:#ff5722;
+    color:white;
+    border:none;
+    padding:15px 25px;
+    border-radius:40px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.search-btn:hover{
+    background:#e64a19;
+}
 </style>
 
 </head>
@@ -369,7 +383,7 @@ button{
 </div>
 <div class="search-box">
 
-<form method="GET" style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;"></form>
+<form method="GET" style="display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;">
 
 <input
 type="text"
@@ -378,9 +392,13 @@ placeholder="🔍 Search Food..."
 value="{{ request.GET.search }}"
 >
 
-<button type="submit">Search</button>
+<button type="submit" class="search-btn">
+🔍 Search
+</button>
 
 </form>
+
+</div>
 <div class="categories" style="text-align:center; margin:20px 0;">
 
     <a class="cat-btn" href="/?category=Pizza">🍕 Pizza</a>
