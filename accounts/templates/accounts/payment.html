@@ -107,7 +107,11 @@ margin-bottom:20px;
 </b>
 </p>
 
+{% if delivery == 0 %}
 <p>🚚 Free Delivery</p>
+{% else %}
+<p>🚚 Delivery Charge : <b style="color:red;">₹{{ delivery }}</b></p>
+{% endif %}
 
 </div>
 <form method="POST" action="/place-order/">
