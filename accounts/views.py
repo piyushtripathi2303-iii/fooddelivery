@@ -274,6 +274,6 @@ def profile(request):
 def popular_foods(request):
     foods = Food.objects.filter(rating__gte=4.5)
 
-    return render(request, "popular_foods.html", {
+    return render(request, "accounts/popular_foods.html", {
         "foods": foods
     })
