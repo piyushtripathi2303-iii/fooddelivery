@@ -119,6 +119,8 @@ def cart(request):
 
     grand_total = total + delivery - discount
 
+    request.session["grand_total"]=grand_total
+
     return render(request, "accounts/cart.html", {
         "cart_items": cart_items,
         "total": total,
@@ -160,7 +162,10 @@ def place_order(request):
 
     if request.method == "GET":
         print("PAYMENT PAGE")
-        return render(request, "accounts/payment.html")
+        return render(request, "accounts/payment.html",{
+            "grand_total":
+            request.session.get("grand_total",0)
+        })
 
     elif request.method == "POST":
         print("PROCESSING PAGE")
