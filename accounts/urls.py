@@ -25,4 +25,5 @@ urlpatterns = [
     name='remove_from_wishlist'
 ),
    path('review/<int:food_id>/', views.add_review, name='add_review'),
+   path("popular-foods/", views.popular_foods, name="popular_foods"),
     ]
