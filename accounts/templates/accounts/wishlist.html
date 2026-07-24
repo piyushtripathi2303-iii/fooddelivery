@@ -18,20 +18,25 @@
         }
 
         .box{
-            width:320px;
-            margin:20px auto;
-            background:white;
-            border-radius:12px;
-            padding:15px;
-            box-shadow:0 0 10px gray;
-            text-align:center;
-        }
+    width:340px;
+    margin:20px auto;
+    background:white;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    text-align:center;
+    transition:.3s;
+}
+
+.box:hover{
+    transform:translateY(-8px);
+}
 
         img{
             width:100%;
-            height:200px;
+            height:220px;
             object-fit:cover;
-            border-radius:10px;
+            border-radius:15px;
         }
 
         .price{
@@ -40,13 +45,26 @@
             font-weight:bold;
         }
 
-        a{
-            text-decoration:none;
-            background:#ff5722;
-            color:white;
-            padding:10px 20px;
-            border-radius:8px;
-        }
+       .btn{
+    text-decoration:none;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    display:inline-block;
+    font-weight:bold;
+}
+
+.remove-btn{
+    background:#e53935;
+}
+
+.cart-btn{
+    background:#ff5722;
+}
+
+.back-btn{
+    background:#4caf50;
+}
     </style>
 
 </head>
@@ -63,22 +81,42 @@
 <img src="{{ item.food.image.url }}">
 {% endif %}
 
-<h2>{{ item.food.name }}</h2>
+<h2 style="color:#222;">
+{{ item.food.name }}
+</h2>
+<div style="
+display:inline-block;
+background:#28a745;
+color:white;
+padding:5px 12px;
+border-radius:20px;
+font-weight:bold;
+margin:10px 0;
+">
 
+⭐ {{ item.food.rating }}
+
+</div>
 <div class="price">
 ₹{{ item.food.price }}
 </div>
 
 <p>{{ item.food.description }}</p>
 
-<a href="/remove-from-wishlist/{{ item.id }}/"
-style="background:red;">
+<a href="/remove-from-wishlist/{{ item.id }}" class="btn remove-btn">
 🗑️ Remove
+</a>
+<br><br>
+
+<a href="/add-to-cart/{{ item.food.id }}" class="btn cart-btn">
+🛒 Move to Cart
 </a>
 
 <br><br>
 
-<a href="/">⬅️ Back</a>
+<a href="/" class="btn back-btn">
+⬅️ Back
+</a>
 
 </div>
 
