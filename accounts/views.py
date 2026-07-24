@@ -282,9 +282,9 @@ def profile(request):
 
         return redirect("profile")
 
-    orders = Order.objects.count()
-    wishlist = Wishlist.objects.count()
-    reviews = Review.objects.count()
+    orders = Order.objects.filter(user=user).count()
+    wishlist = Wishlist.objects.filter(user=user).count()
+    reviews = Review.objects.filter(user=user).count()
 
     return render(request, "accounts/profile.html", {
         "user": user,
