@@ -11,31 +11,42 @@
     }
 
     .box{
-        width:420px;
-        margin:50px auto;
+        width:500px;
+        margin:40px auto;
         background:white;
-        padding:25px;
-        border-radius:15px;
-        box-shadow:0 0 15px gray;
+        padding:30px;
+        border-radius:20px;
+        box-shadow:0 10px 25px rgb(0,0,0,.15);
     }
 
     h1{
         text-align:center;
         color:#ff5722;
+        font-size:36px;
+        margin-bottom:25px;
     }
 
     h3{
         margin-top:20px;
     }
 
-    label{
-        display:flex;
-        align-items:center;
-        gap:10px;
-        font-size:18px;
-        margin:12px 0;
-        cursor:pointer;
-    }
+     label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:18px;
+    margin:12px 0;
+    cursor:pointer;
+    padding:15px;
+    border:2px solid #eee;
+    border-radius:12px;
+    transition:.3s;
+}
+
+label:hover{
+    border-color:#ff5722;
+    background:#fff3e0;
+}
 
     input[type="radio"]{
         width:20px;
@@ -46,28 +57,30 @@
     input[type="text"],
     input[type="password"]{
         width:100%;
-        padding:12px;
-        margin-top:12px;
+        padding:14px;
         border:2px solid #ddd;
-        border-radius:8px;
+        border-radius:10px;
         font-size:16px;
-        box-sizing:border-box;
+    }
+    input:focus{
+        border-color: #ff5722;
+        outline: none;
     }
 
     button{
         width:100%;
-        padding:14px;
-        margin-top:20px;
-        background:#28a745;
+        padding:16px;
+        background:#ff5722;
         color:white;
         border:none;
-        border-radius:8px;
-        font-size:18px;
+        border-radius:12px;
+        font-size:20px;
+        font-weight: bold;
         cursor:pointer;
     }
 
     button:hover{
-        background:green;
+        background:#e64a19;
     }
 
     </style>
@@ -79,7 +92,24 @@
 <div class="box">
 
 <h1>💳 Payment</h1>
+<div style="
+background:#fff3e0;
+padding:15px;
+border-radius:12px;
+margin-bottom:20px;
+">
 
+<h3>🧾 Order Summary</h3>
+
+<p>Total Amount :
+<b style="color:#28a745;">
+₹{{ grand_total }}
+</b>
+</p>
+
+<p>🚚 Free Delivery</p>
+
+</div>
 <form method="POST" action="/place-order/">
 
 {% csrf_token %}
@@ -120,7 +150,14 @@
 <input type="text" placeholder="Enter UPI ID">
 
 </div>
-
+<p style="
+text-align:center;
+color:green;
+font-weight:bold;
+margin-top:20px;
+">
+🔒 100% Secure Payment
+</p>
 <button type="submit">
 🔒 Confirm Payment
 </button>
