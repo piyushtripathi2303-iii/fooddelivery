@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Food Delivery App</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
 *{
@@ -75,13 +75,13 @@ padding:20px;
 
 .food-box{
 position:relative;
-width:320px;
+width:360px;
 background:white;
 border-radius:22px;
 overflow:hidden;
-box-shadow:0 12px 30px rgba(0,0,0,0.15);
-transition:0.4s;
-cursor: pointer;
+box-shadow:0 12px 30px rgba(0,0,0,.18);
+transition:.35s;
+margin:10px;
 }
 .heart{
     position:absolute;
@@ -113,9 +113,9 @@ scale:(1.03);
 
 .food-box img{
 width:100%;
-height:230px;
+height:260px;
 object-fit:cover;
-transition:.4s ;
+transition:.4s;
 }
 .food-box:hover img{
     transform:scale(1.08);
@@ -386,6 +386,105 @@ transition:.3s;
 
 .heart:hover{
 transform:scale(1.2);
+}
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width:768px){
+
+.navbar{
+flex-direction:column;
+padding:15px;
+}
+
+.logo{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.menu{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:8px;
+}
+
+.menu a{
+font-size:14px;
+padding:8px 12px;
+}
+
+.search-box form{
+flex-direction:column;
+}
+
+.search-box input{
+width:95%;
+font-size:16px;
+}
+
+.search-btn{
+width:95%;
+margin-top:10px;
+}
+
+.categories{
+display:flex;
+overflow-x:auto;
+gap:10px;
+padding:10px;
+justify-content:flex-start;
+}
+
+.cat-btn{
+white-space:nowrap;
+flex-shrink:0;
+}
+
+.banner{
+padding:35px 20px;
+}
+
+.banner h1{
+font-size:30px;
+}
+
+.banner p{
+font-size:16px;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr;
+padding:15px;
+gap:20px;
+}
+
+.food-box{
+width:100%;
+}
+
+.food-box img{
+height:220px;
+}
+
+.details h2{
+font-size:22px;
+}
+
+.price{
+font-size:24px;
+}
+
+button{
+font-size:17px;
+padding:15px;
+}
+
+footer{
+padding:20px;
+font-size:14px;
+}
+
 }
 </style>
 
